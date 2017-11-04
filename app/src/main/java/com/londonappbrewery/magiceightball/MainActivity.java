@@ -2,6 +2,13 @@ package com.londonappbrewery.magiceightball;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -9,5 +16,39 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView textView;
+        final ImageView eightball;
+        Button button;
+
+        textView = (TextView) findViewById(R.id.quoteText);
+        eightball = (ImageView) findViewById(R.id.image_eightBall);
+        button = (Button) findViewById(R.id.askButton);
+
+        final int[] ballArray = {
+                R.drawable.ball1,
+                R.drawable.ball2,
+                R.drawable.ball3,
+                R.drawable.ball4,
+                R.drawable.ball5};
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.d("Magic Eight Ball", "Ball Has Shown Answer");
+
+                Random randomAnswerGenerator = new Random();
+                int number = randomAnswerGenerator.nextInt(5);
+                Log.d("Magic Eight Ball", "Answer: " + number);
+                eightball.setImageResource(ballArray[number]);
+
+
+
+
+
+            }
+        });
+
     }
 }
